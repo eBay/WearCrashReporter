@@ -1,0 +1,58 @@
+apply plugin: 'com.android.library'
+
+ext {
+  bintrayRepo = 'maven'
+  bintrayName = 'wear-crash-reporter'
+
+  publishedGroupId = 'com.stubhub.crash'
+  libraryName = 'wear-crash-reporter'
+  artifact = 'wear-crash-reporter'
+
+  libraryDescription = 'Reports crashes on the watch app into the phone app\'s crash report system'
+
+  siteUrl = 'https://github.corp.ebay.com/StubHub-Mobile/wear-crash-reporter'
+  gitUrl = 'https://github.corp.ebay.com/StubHub-Mobile/wear-crash-reporter.git'
+
+  libraryVersion = '1.0.2'
+
+  developerId = 'stubhub'
+  developerName = 'Philippe Laporte'
+  developerEmail = 'plaporte@stubhub.com'
+
+  licenseName = 'The Apache Software License, Version 2.0'
+  licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+  allLicenses = ["Apache-2.0"]
+}
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 26
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            minifyEnabled false
+        }
+    }
+}
+
+dependencies {
+    compile 'com.google.code.gson:gson:2.8.0'
+
+    compile 'com.google.android.gms:play-services-wearable:11.0.4'
+
+    compile 'com.google.android.support:wearable:2.0.5'
+    provided 'com.google.android.wearable:wearable:2.0.5'
+}
+
+apply from: 'install.gradle'
+apply from: 'bintray.gradle'
